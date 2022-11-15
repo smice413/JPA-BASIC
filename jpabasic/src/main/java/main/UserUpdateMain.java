@@ -20,7 +20,7 @@ public class UserUpdateMain {
             } else {
                 String newName = "이름" + (System.currentTimeMillis() % 100);
                 user.changeName(newName);
-            }
+            } 
             transaction.commit();
         } catch (Exception ex) {
             ex.printStackTrace();
