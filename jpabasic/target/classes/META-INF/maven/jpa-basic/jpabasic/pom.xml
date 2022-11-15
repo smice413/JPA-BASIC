@@ -19,6 +19,7 @@
             <artifactId>hibernate-core</artifactId>
             <version>${hiberate.version}</version>
         </dependency>
+        <!-- hikaricp는 커넥션 풀을 하기 위함 -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-hikaricp</artifactId>

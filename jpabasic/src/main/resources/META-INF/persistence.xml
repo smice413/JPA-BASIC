@@ -7,16 +7,19 @@
              version="3.0">
 
     <persistence-unit name="jpabegin" transaction-type="RESOURCE_LOCAL">
-        <class>jpabasic.reserve.domain.User</class>
-        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <class>jpabasic.reserve.domain.User</class> <!-- 매핑 클래스 -->
+        <exclude-unlisted-classes>true</exclude-unlisted-classes> <!-- false는 위의 클래스 매핑을 하지 않더라도 검색해서 찾음 -->
         <properties>
+        <!-- db 연결 설정 -->
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.url"
                       value="jdbc:mysql://localhost/jpabegin?characterEncoding=utf8"/>
             <property name="jakarta.persistence.jdbc.user" value="jpauser"/>
             <property name="jakarta.persistence.jdbc.password" value="jpapass"/>
-
+		<!-- 하이버네이트 db종류 설정 -->
+		<!-- dialect는 db마다 쿼리를 다르게 하는데 그것에 대한 설정하는 것. -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+        <!-- 커넥션풀 설정 -->  
             <property name="hibernate.hikari.poolName" value="pool"/>
             <property name="hibernate.hikari.maximumPoolSize" value="10"/>
             <property name="hibernate.hikari.minimumIdle" value="10"/>
