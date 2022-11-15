@@ -1,0 +1,22 @@
+﻿create database jpabegin CHARACTER SET utf8mb4;
+
+show databases; // 앞서 생성한 db가 정상 생성되었는지 확인 가능
+
+//@뒤에 localhost가 오면 db가 설치된 pc에서만 접근이 가능하다고 제한을 거는 것이고, %는 어떤 클라이언트에서도 접근 가능한것.
+create user 'jpauser'@'localhost' identified by 'jpapass';
+create user 'jpauser'@'%' identified by 'jpapass';
+
+grant all privileges on jpabegin.* to 'jpauser'@'localhost';
+grant all privileges on jpabegin.* to 'jpauser'@'%';
+
+//flush privileges를 실행하여 위 권한 부여를 DBMS에 적용하기 위해 꼭 실행해야함.
+flush privileges;
+
+
+create table jpabegin.user (
+ email varachar(50) not null primary key,
+ name varchar(50),
+ crate_date datetime
+) engine innodb character set utf8mb4;
+
+desc jpabegin.user; //테이블 생성 확인
