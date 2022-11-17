@@ -1,0 +1,47 @@
+﻿@Table 어노테이션
+어노테이션을 생략하면 클래스 이름과 동일한 이름에 매핑
+속성
+-name : 테이블 이름(생략하면 클래스 이름과 동일한 이름)
+-catalog : 카탈로그 이름(예, mysql db 이름)
+-schema : 스키마 이름 (예, 오라클 스키마 이름)
+
+예시
+@Table
+@Table(name = "hotel_info")
+@Table(catalog ="point", name ="point_history")
+@Table(schema ="crm" , name = "cust_stat")
+
+@Enumerated(열거타입)
+설정값
+-EnumType.STRING : enum 타입 값 이름을 저장(문자열 타입 칼럽에 매핑)
+-EnumType.ORDINAL(기본값): enum 타입의 값의 순서를 저장(숫자 타입 칼럼에 매핑)
+
+public enum Grade{  //열거타입
+    S1, S2, S3, S4	
+}
+EnumType.STRING -> "S1"
+Grade.S1.name()
+
+EnumType.ORDINAL -> 0
+Grade.S1.ordinal()
+
+엔티티 클래스 제약 조건(스펙 기준)
+-@Entity 적용해야 함
+-@Id 적용해야 함
+-인자 없는 기본 생성자 필요 ex) protected Hotel() {}
+-기본 생성자는 public 또는 protected여야 함
+-최상위 클래스여야 함
+-final이면 안됨
+
+접근타입
+-2개 접근 타입
+  필드 접근 : 필드 값을 사용하여 매핑
+  프로퍼티 접근 : getter/setter 메서드를 사용해서 매핑
+-설정방법
+  @Id 어노테이션을 필드에 붙이면 필드 접근
+  @Id 어노테이션을 getter 메서드에 붙이면 프로퍼티 접근
+  @Access 어노테이션을 사용해서 명시적으로 지정
+     -클래스/개별 필드에 적용가능
+     -@Access(AccessType.PROPERTY) /@Access(AccessType.FIELD)
+-개인적으로 필드 접근 선호
+  불필요한 setter 메서드를 만들 필요없음
