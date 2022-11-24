@@ -26,7 +26,7 @@ public class MainEmbeddable {
             tx.begin();
             Address address = new Address("주소1", "주소2", "12345");
             Hotel hotel = new Hotel("H00", "HN", 2022, Grade.S7, address);
-            em.persist(hotel);
+            em.persist(hotel); //저장
             tx.commit();
         } catch (Exception ex) {
             tx.rollback();
@@ -40,7 +40,7 @@ public class MainEmbeddable {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            Hotel hotel = em.find(Hotel.class, "H00");
+            Hotel hotel = em.find(Hotel.class, "H00"); //조회
             if (hotel != null) {
                 logger.info("주소: {}", hotel.getAddress());
             }

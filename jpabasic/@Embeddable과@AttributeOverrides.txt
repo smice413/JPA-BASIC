@@ -1,0 +1,17 @@
+﻿@Embeddable
+-엔티티가 아닌 타입을 한 개 이상의 필드와 매핑할 때 사용
+  -예: Address, Money 등 매핑
+-엔티티의 한 속성으로 @Embeddable 적용 타입 사용
+-이 어노테이션을 사용하면 모델을 더 잘 표현할 수 있음
+  -개별 속성을 모아서 이해 -> 타입으로 더 쉽게 이해
+   -(addr1, addr2, zipcode)를 모아서 '이게 주소구나' -->'주소'네
+
+-단, @Embeddable을 한 entity에서 두개 쓰면 중복으로 에러 발생하기 때문에 @AttributeOverrides를 사용
+
+  -예:
+     @AttributeOverrides({ //Address entity의 address1 필드명을 workAddress의 컬럼 waddr1에 매핑한다는 의미
+    	//이상태로 저장을 하면 insert into Employee(addr1, addr2, zipcode, waddr1, waddr2, wzipcode, i) values(?,?...)으로 함께 저장가능해진다.
+            @AttributeOverride(name = "address1", column = @Column(name = "waddr1")),
+            @AttributeOverride(name = "address2", column = @Column(name = "waddr2")),
+            @AttributeOverride(name = "zipcode", column = @Column(name = "wzipcode"))
+    })
