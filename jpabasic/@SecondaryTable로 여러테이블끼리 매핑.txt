@@ -1,0 +1,22 @@
+﻿JPA07
+이전 영상에서는 한 테이블에서 entity와 Embeddable을 저장했는데, 여기서는 서로 다른 테이블에서 한다.
+여기서는 entity는 하나이고 나머지 테이블은 entity는 아니다. @SecondaryTable로 매핑하여 데이터를 같이넣고 같이 삭제할 수 있다.
+방법1. @SecondaryTable + 테이블명 으로 매핑할 수 있다.
+예)
+@SecondaryTables({
+        @SecondaryTable(name = "writer_address",
+                pkJoinColumns = @PrimaryKeyJoinColumn(name = "writer_id", referencedColumnName = "id")
+        ),											//name은 writer_intro 테이블컬럼     //reference는 writer 테이블 컬럼
+        @SecondaryTable(name = "writer_intro",
+                pkJoinColumns = @PrimaryKeyJoinColumn(name = "writer_id", referencedColumnName = "id")
+        )}
+)
+
+@Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "address1", column = @Column(table = "writer_address", name = "addr1")),
+            @AttributeOverride(name = "address2", column = @Column(table = "writer_address", name = "addr2")),
+            @AttributeOverride(name = "zipcode", column = @Column(table = "writer_address"))
+    })
+    private Address address;
+
