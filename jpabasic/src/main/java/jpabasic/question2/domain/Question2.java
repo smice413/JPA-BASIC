@@ -13,7 +13,7 @@ public class Question2 {
     private String text;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(
+    @CollectionTable(//@Embeddable인 Choice 클래스와 List 매핑
             name = "question_choice",
             joinColumns = @JoinColumn(name = "question_id")
     )

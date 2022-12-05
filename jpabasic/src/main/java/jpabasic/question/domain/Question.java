@@ -14,11 +14,11 @@ public class Question {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
-            name = "question_choice",
-            joinColumns = @JoinColumn(name = "question_id")
+            name = "question_choice", //컬랙션 테이블 이름
+            joinColumns = @JoinColumn(name = "question_id")//조인할 아이디컬럼
     )
-    @OrderColumn(name = "idx")
-    @Column(name = "text")
+    @OrderColumn(name = "idx") //Set과 다른점으로 List에서 index값을 저장할 칼럼
+    @Column(name = "text")//값이 들어갈 컬럼
     private List<String> choices = new ArrayList<>();
 
     protected Question() {}
