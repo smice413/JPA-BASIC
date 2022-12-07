@@ -17,8 +17,8 @@ public class Document {
             name = "doc_prop",
             joinColumns = @JoinColumn(name = "doc_id")
     )
-    @MapKeyColumn(name = "name")
-    @Column(name = "value")
+    @MapKeyColumn(name = "name") //Map으로 매핑 
+    @Column(name = "value")//@Embedable로 하면 @Column을 안쓰고 밑의 맵객체 쓰고, class @Embedable생성
     private Map<String, String> props = new HashMap<>();
 
     protected Document() {}
