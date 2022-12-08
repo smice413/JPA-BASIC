@@ -91,10 +91,10 @@ public class Main11 {
             tx.begin();
             TypedQuery<Role> query = em.createQuery(
                     "select r from Role r left join fetch r.permissions where r.name like :name order by r.id", Role.class);
-            query.setParameter("name", "name%");
-            query.setFirstResult(6);
-            query.setMaxResults(3);
-            List<Role> roles = query.getResultList();
+            query.setParameter("name", "name%"); //jpql
+            query.setFirstResult(6); //페이징 처리할 때 사용
+            query.setMaxResults(3);	// 페이징 처리할 때 사용
+            List<Role> roles = query.getResultList(); //앞에서 설정한 쿼리를 기준으로 row의 목록을 읽어옴
             roles.forEach(r -> {
                 logger.info("role: id={} name={} perms={}", r.getId(), r.getName(), r.getPermissions().size());
             });

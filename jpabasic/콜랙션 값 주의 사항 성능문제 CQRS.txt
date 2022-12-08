@@ -1,0 +1,5 @@
+﻿성능 문제 --> CQRS(Command Query Responsibility Segregation)
+-변경 기능을 위한 모델과 조회기능을 위한 모델을 분리
+  -변경 기능 : JPA 활용
+  -조회 기능 : MyBatis/JdbcTemplate/JPA 중 알맞은 기술 사용
+-모든 기능을 JPA로 구현할 필요 없음
